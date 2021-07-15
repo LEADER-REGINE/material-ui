@@ -1,0 +1,144 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .home-container{
+      display: flex;
+      
+      background-color: #Fff;
+  }
+
+  .home-left-container{
+        margin-left: 80px;
+      background: #f3f3f3;
+      width: 400px;
+      
+  }
+
+  .home2{
+      display: flex;
+      width: 100%;
+  }
+
+  .home-post-container{
+      width: 800px;
+      
+      
+      margin: 0 auto;
+      
+  }
+
+  .home-post{
+    background: #FFFFFF;
+    border-radius: 20px;
+    margin: 30px 0;
+  }
+
+  .post-image-container{
+     width: auto;
+     height: 300px;
+     border-top: 1px solid #36CA9A;
+  }
+
+  .post-image-container img{
+      width: auto;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+  }
+
+  .post-bot{
+      width: 800px;
+      display: flex;
+      border: 1px solid #36CA9A;
+    box-sizing: border-box;
+    border-radius: 0 0 20px 20px;
+    border-top: none;
+    height: 60px;
+    box-shadow: 0 1px 0px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .post-topp{
+    border: 1px solid #36CA9A;
+    box-sizing: border-box;
+    border-radius: 20px 20px 0 0;
+    width: 800px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .post-top{
+      display: flex;
+      flex-direction: row;
+      height: 30px;
+      margin: 10px;
+      align-items: center;
+      margin-top: 15px;
+      margin-left: 10px;
+  }
+
+  .post-profilepic{
+      border-radius: 100px;
+      height: 40px;
+      width: 40px;
+  }
+
+  .post-top div{
+      margin: auto 0;
+      
+  }
+
+  .post-top h6{
+      line-height: 15px;
+  }
+
+  .post-status {
+      margin: 10px;
+  }
+
+  .post-top div{
+      display: flex;
+      flex-direction: column;
+      margin-left: 10px;
+  }
+
+ 
+
+  .puso{
+      margin-top: -20px;
+      margin-left: -20px;
+  }
+
+  .puso-ctr{
+      line-height: 60px;
+      margin-left: 20px;
+  }
+
+  textarea{
+      resize: none;
+      outline: none;
+      padding: 10px;
+  }
+
+
+  @media only screen and (max-width: 600px) {
+    .home2{
+        display: flex;
+        flex-direction: column;
+        margin-left: 130px;
+        width: 100%;
+    }
+
+    .home-left-container{
+        height: 420px;
+        width: 100%;
+        background-color: #fff;
+    }
+
+    ..AddPost-container form{
+        width: 100%;
+    }
+  }
