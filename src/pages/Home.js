@@ -7,64 +7,40 @@ import Heart from "react-animated-heart"; //puso
 import Nav from "../components/Nav";
 import Post from "../components/Post";
 
-
-
-import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
+import Collapse from "@material-ui/core/Collapse";
+import Avatar from "@material-ui/core/Avatar";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import { red } from "@material-ui/core/colors";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import ShareIcon from "@material-ui/icons/Share";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { Container, Grid } from "@material-ui/core";
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: "flex",
   },
 
   AddPostContainer: {
     marginTop: 20,
-  }
-
+  },
 }));
-
-
-
-
-
-
 
 export default function Home() {
   const user = firebase.auth().currentUser;
   const db = firebase.firestore();
   var UID = user.uid;
 
-
-
   const classes = useStyles();
-
-
-
-
-
-
-
-
-
-
-
-
 
   //puso
   const [isClick, setClick] = useState(false);
@@ -139,7 +115,7 @@ export default function Home() {
                     },
                     { merge: true }
                   );
-                  batch.commit().then(() => { });
+                  batch.commit().then(() => {});
                 });
               });
           } else {
@@ -174,7 +150,7 @@ export default function Home() {
                           },
                           { merge: true }
                         );
-                        batch.commit().then(() => { });
+                        batch.commit().then(() => {});
                       });
                     });
                 });
@@ -217,7 +193,7 @@ export default function Home() {
           userID: UID,
           profilePic: profilePic,
         })
-        .then(() => { });
+        .then(() => {});
     });
   }
 
@@ -243,20 +219,15 @@ export default function Home() {
   }
   Modal.setAppElement("#root");
 
-
-
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-
-
   return (
     <div className={classes.root}>
       <Nav></Nav>
-
 
       <Container>
         <Grid
@@ -265,20 +236,17 @@ export default function Home() {
           direction="column"
           justifyContent="center"
           alignItems="center"
-          xs={12} 
+          xs={12}
           md={12}
         >
           <Grid item xs={12} md={12} className={classes.AddPostContainer}>
             <AddPost />
           </Grid>
-          {
-            state.posts.map((states) => (
-              <Grid item xs={12} md={12} >
-
-                <Post states={states} />
-              </Grid>
-            ))
-          }
+          {state.posts.map((states) => (
+            <Grid item xs={12} md={12}>
+              <Post states={states} />
+            </Grid>
+          ))}
         </Grid>
       </Container>
     </div>
