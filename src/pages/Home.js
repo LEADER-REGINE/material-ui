@@ -28,6 +28,16 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { Container, Grid } from "@material-ui/core";
 
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
+
+  AddPostContainer: {
+    marginTop: 20,
+  }
+
+}));
 
 
 
@@ -42,7 +52,7 @@ export default function Home() {
 
 
 
-
+  const classes = useStyles();
 
 
 
@@ -244,18 +254,34 @@ export default function Home() {
 
 
   return (
-    <Container>
-      <Grid container spacing={3}>
-        {
-          state.posts.map((states) => (
-            <Grid item xs={12} md={12} >
-              <Post states={states} />
-            </Grid>
-          ))
-        }
-      </Grid>
-    </Container>
+    <div className={classes.root}>
+      <Nav></Nav>
 
+
+      <Container>
+        <Grid
+          container
+          spacing={3}
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          xs={12} 
+          md={12}
+        >
+          <Grid item xs={12} md={12} className={classes.AddPostContainer}>
+            <AddPost />
+          </Grid>
+          {
+            state.posts.map((states) => (
+              <Grid item xs={12} md={12} >
+
+                <Post states={states} />
+              </Grid>
+            ))
+          }
+        </Grid>
+      </Container>
+    </div>
 
     // <div className="home-container">
     //   <div className="nav-container1">

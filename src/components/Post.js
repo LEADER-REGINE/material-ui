@@ -16,11 +16,11 @@ export default function Post({ states }) {
 
     const useStyles = makeStyles((theme) => ({
         root: {
-            maxWidth: 345,
+            maxWidth: 700,
         },
         media: {
             height: 0,
-            paddingTop: '56.25%', // 16:9
+            paddingTop: '100%', // 16:9
         },
         expand: {
             transform: 'rotate(0deg)',
@@ -121,7 +121,11 @@ export default function Post({ states }) {
       };
 
       var userRef = db.collection("users").doc(UID);
-
+      var postsRef = db.collection("posts");
+       
+      var notifRef = db.collection("notifications");
+      var batch = db.batch();
+      const timestamp = firebase.firestore.FieldValue.serverTimestamp;
 
 
 
@@ -131,7 +135,7 @@ export default function Post({ states }) {
 
             <CardHeader
                 avatar={
-                    <Avatar aria-label="recipe" className={classes.avatar} src={states.profilePic} />
+                    <Avatar   className={classes.avatar} src={states.profilePic} />
                         
                     
                 }
@@ -148,7 +152,7 @@ export default function Post({ states }) {
             <CardMedia
                 className={classes.media}
                 image={states.img_path}
-                title="Paella dish"
+                
             />
 
 
@@ -169,9 +173,9 @@ export default function Post({ states }) {
                     }}>
                     <FavoriteIcon />
                 </IconButton>
-                <IconButton aria-label="share">
+                {/* <IconButton aria-label="share">
                     <ShareIcon />
-                </IconButton>
+                </IconButton> */}
                 <IconButton
                     className={clsx(classes.expand, {
                         [classes.expandOpen]: expanded,
