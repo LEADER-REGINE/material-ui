@@ -195,7 +195,11 @@ export default function Post({ states }) {
         subheader={states.postedDate} //date
       />
 
-      <CardMedia className={classes.media} image={states.img_path} />
+      <CardMedia
+        id="imageContainer"
+        className={classes.media}
+        image={states.img_path}
+      />
 
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">

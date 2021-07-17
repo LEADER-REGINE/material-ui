@@ -1,33 +1,44 @@
 import React, { useEffect, useState } from "react";
 import firebase from "../utils/firebase";
 import { Link } from "react-router-dom";
-import { red } from '@material-ui/core/colors';
+import { red } from "@material-ui/core/colors";
 import Nav from "../components/Nav";
 
 import DeleteIcon from "@material-ui/icons/Delete";
-import { Avatar, Button, Card, CardContent, CardHeader, CardMedia, Container, Grid, IconButton, makeStyles, Typography } from "@material-ui/core";
+import {
+  Avatar,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  Container,
+  Grid,
+  IconButton,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
 import { DeleteOutline } from "@material-ui/icons";
-import EditIcon from '@material-ui/icons/Edit';
+import EditIcon from "@material-ui/icons/Edit";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-
     maxWidth: 600,
     marginTop: 30,
   },
   media: {
     height: 0,
-    paddingTop: '100%', // 16:9
+    paddingTop: "100%", // 16:9
   },
   expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.shortest,
     }),
   },
   expandOpen: {
-    transform: 'rotate(180deg)',
+    transform: "rotate(180deg)",
   },
   avatar: {
     backgroundColor: red[500],
@@ -36,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   avatar1: {
     backgroundColor: "Primary",
     width: 100,
-    height: 100
+    height: 100,
   },
   profileContainer: {
     display: "flex",
@@ -44,15 +55,10 @@ const useStyles = makeStyles((theme) => ({
     //width: "100%",
   },
 
-  profileContainer1: {
-
-
-  },
-
+  profileContainer1: {},
 }));
 
 export default function Profile() {
-
   const classes = useStyles();
 
   const user = firebase.auth().currentUser;
@@ -145,97 +151,89 @@ export default function Profile() {
   const deletePost = (docId) => {
     batch.delete(usersRef.collection("postCollection").doc(docId));
     batch.delete(postsRef.doc(docId));
-    batch.commit().then(() => { });
+    batch.commit().then(() => {});
   };
-
-
 
   return (
     <div className={classes.profileContainer}>
-
       <Nav></Nav>
 
-
-
-      <Container className={classes.profileContainer1} id="profileContainer1" >
-        <Grid
-          container
-          spacing={3}
-
-          className={classes.profileContainer}
-        >
-
+      <Container className={classes.profileContainer1} id="profileContainer1">
+        <Grid container spacing={3} className={classes.profileContainer}>
           <Grid item xs={12} md={12} className={classes.AddPostContainer}>
-
             {userdata.user.map((user) => (
-              <Card className={classes.root} style={{ boxShadow: "none" }} id="profileTopContainer">
+              <Card
+                className={classes.root}
+                style={{ boxShadow: "none" }}
+                id="profileTopContainer"
+              >
                 <CardHeader
                   avatar={
-                    <Avatar className={classes.avatar1}>
+                    <Avatar className={classes.avatar1} src={user.profilePic}>
                       R
                     </Avatar>
                   }
-                  action={ 
-                    <Button variant='contained' color='primary' style={{ textTransform:'capitalize', marginTop:40}}>
+                  action={
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      style={{ textTransform: "capitalize", marginTop: 40 }}
+                    >
                       Edit
-                      <EditIcon style={{ marginLeft: 10}}/>
+                      <EditIcon style={{ marginLeft: 10 }} />
                     </Button>
                   }
                   title={user.fname + " " + user.lname}
                   subheader={<p>Posts: {getData.postCount}</p>}
                 />
               </Card>
-
             ))}
 
-
-
-
-
-
-            <div id="cardPost" style={{ maxWidth: 600, marginTop: 30, marginBottom: 30 }}>
-              <h1 className="recent" >Recent Posts</h1>
+            <div
+              id="cardPost"
+              style={{ maxWidth: 600, marginTop: 30, marginBottom: 30 }}
+            >
+              <h1 className="recent">Recent Posts</h1>
             </div>
 
-
-
-
             {state.posts.map((states) => (
-              <Card className={classes.root} elevation={3} id="cardPost" style={{ marginTop: 30}}>
-
+              <Card
+                className={classes.root}
+                elevation={3}
+                id="cardPost"
+                style={{ marginTop: 30 }}
+              >
                 <CardHeader
                   action={
                     <IconButton onClick={() => deletePost(states.postID)}>
                       <DeleteOutline />
                     </IconButton>
                   }
-
                   avatar={
-                    <Avatar className={classes.avatar} src={states.profilePic} />
+                    <Avatar
+                      className={classes.avatar}
+                      src={states.profilePic}
+                    />
                   }
                   title={states.postAuthor}
                   subheader={states.postedDate}
                 />
                 <CardContent>
-                  <Typography variant="body2" color="textSecondary" component="p">
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
                     {states.postBody}
                   </Typography>
                 </CardContent>
 
-
-                <CardMedia
-                  className={classes.media}
-                  image={states.img_path}
-
-                />
-
+                <CardMedia className={classes.media} image={states.img_path} />
               </Card>
             ))}
           </Grid>
         </Grid>
       </Container>
-
-
 
       {/* <div className="profile-container">
         <div>
