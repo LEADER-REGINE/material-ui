@@ -59,7 +59,7 @@ export default function Register() {
         })
         .catch((error) => {
           var errorMessage = error.message;
-          console.log(errorMessage);
+          alert(errorMessage);
         });
     }
   };
