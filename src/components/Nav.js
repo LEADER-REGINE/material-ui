@@ -167,14 +167,14 @@ export default function Nav() {
         <nav className={classes.nav} id="sideNav1">
           <ul className={classes.navItems}>
 
-          <li className={classes.navList}>
+            <li className={classes.navList}>
               <Button
                 component={Link}
                 to="/home"
                 className={classes.logo}
                 classes={{ label: classes.label }}
               >
-                
+
 
                 <Typography
                   variant="h6"
@@ -182,7 +182,7 @@ export default function Nav() {
                   className={classes.linkText}
                   id="logo"
                 >
-                   
+
                   Twatter
                 </Typography>
               </Button>
@@ -299,6 +299,30 @@ export default function Nav() {
             className={classes.bmBurgerBars}
             customBurgerIcon={<MenuIcon className={classes.burgerIcon} />}
           >
+
+            <li className={classes.navList}>
+              <Button
+                component={Link}
+                to="/home"
+                className={classes.logo}
+                classes={{ label: classes.label }}
+              >
+
+
+                <Typography
+                  variant="h6"
+                  underlineNone
+                  className={classes.linkText}
+                  id="logo"
+                >
+
+                  Twatter
+                </Typography>
+              </Button>
+            </li>
+
+
+
             <Link className={classes.bmItemList} to="/home">
               <div className={classes.bmItemList}>
                 <HomeOutlinedIcon className={classes.navIcon} />
@@ -307,8 +331,8 @@ export default function Nav() {
                   underlineNone
                   className={classes.linkText}
                 >
-                   
-                  Home 
+
+                  Home
                 </Typography>
               </div>
             </Link>
