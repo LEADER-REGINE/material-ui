@@ -201,7 +201,7 @@ export default function Profile() {
 
 
             {state.posts.map((states) => (
-              <Card className={classes.root} elevation={3} id="cardPost">
+              <Card className={classes.root} elevation={3} id="cardPost" style={{ marginTop: 30}}>
 
                 <CardHeader
                   action={
