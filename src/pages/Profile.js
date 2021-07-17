@@ -5,8 +5,9 @@ import { red } from '@material-ui/core/colors';
 import Nav from "../components/Nav";
 
 import DeleteIcon from "@material-ui/icons/Delete";
-import { Avatar, Card, CardContent, CardHeader, CardMedia, Container, Grid, IconButton, makeStyles, Typography } from "@material-ui/core";
+import { Avatar, Button, Card, CardContent, CardHeader, CardMedia, Container, Grid, IconButton, makeStyles, Typography } from "@material-ui/core";
 import { DeleteOutline } from "@material-ui/icons";
+import EditIcon from '@material-ui/icons/Edit';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,6 +31,12 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     backgroundColor: red[500],
+  },
+
+  avatar1: {
+    backgroundColor: "Primary",
+    width: 100,
+    height: 100
   },
   profileContainer: {
     display: "flex",
@@ -159,9 +166,40 @@ export default function Profile() {
         >
 
           <Grid item xs={12} md={12} className={classes.AddPostContainer}>
-            <div id="cardPost" style={{ maxWidth:600}}> 
+
+            {userdata.user.map((user) => (
+              <Card className={classes.root} style={{ boxShadow: "none" }} id="profileTopContainer">
+                <CardHeader
+                  avatar={
+                    <Avatar className={classes.avatar1}>
+                      R
+                    </Avatar>
+                  }
+                  action={ 
+                    <Button variant='contained' color='primary' style={{ textTransform:'capitalize', marginTop:40}}>
+                      Edit
+                      <EditIcon style={{ marginLeft: 10}}/>
+                    </Button>
+                  }
+                  title={user.fname + " " + user.lname}
+                  subheader={<p>Posts: {getData.postCount}</p>}
+                />
+              </Card>
+
+            ))}
+
+
+
+
+
+
+            <div id="cardPost" style={{ maxWidth: 600, marginTop: 30, marginBottom: 30 }}>
               <h1 className="recent" >Recent Posts</h1>
             </div>
+
+
+
+
             {state.posts.map((states) => (
               <Card className={classes.root} elevation={3} id="cardPost">
 
