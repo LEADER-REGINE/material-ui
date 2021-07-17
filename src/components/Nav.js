@@ -199,7 +199,7 @@ export default function Nav() {
             </li>
 
             <li className={classes.navList}>
-              <Button onClick={logout} className={classes.but} classes={{ label: classes.label }}>
+              <Button component={Link} to="/notifications" className={classes.but} classes={{ label: classes.label }}>
                 < NotificationsIcon className={classes.navIcon} />
 
                 <Typography variant="h6" underlineNone className={classes.linkText}>   Notification</Typography>
@@ -207,7 +207,7 @@ export default function Nav() {
             </li>
 
             <li className={classes.navList}>
-              <Button component={Link} onClick={logout} className={classes.but} classes={{ label: classes.label }}>
+              <Button component={Link} to="/editprofile" className={classes.but} classes={{ label: classes.label }}>
                 <SettingsIcon className={classes.navIcon} />
                 <Typography
                   variant="h6"
