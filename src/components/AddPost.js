@@ -1,34 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import firebase, { storage } from "../utils/firebase";
-import { Avatar, Button, Card, CardHeader, Fade, IconButton, makeStyles, Modal, TextareaAutosize, Backdrop, Typography, CardContent, CardActions, Container } from '@material-ui/core';
-import ImageIcon from '@material-ui/icons/Image';
+import {
+  Avatar,
+  Button,
+  Card,
+  CardHeader,
+  Fade,
+  IconButton,
+  makeStyles,
+  Modal,
+  TextareaAutosize,
+  Backdrop,
+  Typography,
+  CardContent,
+  CardActions,
+  Container,
+} from "@material-ui/core";
+import ImageIcon from "@material-ui/icons/Image";
 
 var uuid = require("uuid");
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 600,
-
   },
 
   textarea1: {
-    width: '100%'
-
+    width: "100%",
   },
 
   avatar: {
     backgroundColor: "#3BD98A",
-
   },
-
 
   modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    border: 'none',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    border: "none",
   },
-
 }));
 
 export default function ImageUpload() {
@@ -45,6 +55,11 @@ export default function ImageUpload() {
     heartCtr: 0,
   });
 
+  const [userdata, setuserdata] = useState({
+    user: [],
+    postCount: "",
+  });
+
   function handleChange(e) {
     setFile(e.target.files[0]);
   }
@@ -59,6 +74,17 @@ export default function ImageUpload() {
   var batch = db.batch();
   const timestamp = firebase.firestore.FieldValue.serverTimestamp;
   //references
+
+  useEffect(() => {
+    const fetchUser = () => {
+      userRef.get().then((doc) => {
+        let userList = [];
+        userList.push(doc.data());
+        setuserdata({ user: userList });
+      });
+    };
+    fetchUser(); // eslint-disable-next-line
+  }, []);
 
   function handleUpload(e) {
     e.preventDefault();
@@ -88,7 +114,7 @@ export default function ImageUpload() {
           userID: UID,
           profilePic: profilePic,
         });
-        batch.commit().then(() => { });
+        batch.commit().then(() => {});
       });
     } else {
       userRef.get().then((doc) => {
@@ -133,7 +159,7 @@ export default function ImageUpload() {
                     .update({
                       img_path: url,
                     })
-                    .then(() => { });
+                    .then(() => {});
                 });
             });
           });
@@ -141,7 +167,6 @@ export default function ImageUpload() {
       });
     }
   }
-
 
   const [open, setOpen] = React.useState(false);
 
@@ -154,112 +179,135 @@ export default function ImageUpload() {
   };
 
   return (
-
     <Card className={classes.root} elevation={2} id="addPost1">
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            R
-          </Avatar>
-        }
+      {userdata.user.map((data) => (
+        <div>
+          <CardHeader
+            avatar={
+              <Avatar
+                src={data.profilePic}
+                aria-label="recipe"
+                className={classes.avatar}
+              >
+                R
+              </Avatar>
+            }
+            title={
+              <Button
+                style={{
+                  textTransform: "capitalize",
+                  borderRadius: 20,
+                  width: "100%",
+                  justifyContent: "flex-start",
+                }}
+                variant="outlined"
+                onClick={handleOpen}
+              >
+                What's on your mind, {data.fname}
+              </Button>
+            }
+          />
 
-        title={
-          <Button
-            style={{ textTransform: 'capitalize', borderRadius: 20, width: '100%', justifyContent: "flex-start" }}
-            variant="outlined"
-            onClick={handleOpen}
+          <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            className={classes.modal}
+            open={open}
+            onClose={handleClose}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+              timeout: 500,
+            }}
           >
-            What's on your mind, Name
-
-          </Button>
-        }
-
-      />
-
-
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-
-      >
-        <Fade in={open}>
-
-          <Card xs={12} md={12}>
-            <CardHeader
-              xs={12} md={12}
-              title={
-                <Typography
-                  variant="h5"
-                  color="textSecondary"
-                  component="p"
-                  style={{ alignItems: "center", justifyContent: "center", display: 'flex' }}
-                >
-                  Create Post
-                </Typography>
-              }
-
-              id="postwidth"
-            />
-            <Card>
-              <CardHeader
-                avatar={
-                  <Avatar aria-label="recipe" className={classes.avatar}>
-                    R
-                  </Avatar>
-                }
-                title="name nung mag popost"
-                style={{ width: "100%" }}
-              />
-
-              <CardContent>
-                <textarea className={classes.textarea1}
-                  id="textarea"
-                  placeholder="What's on your mind, Name?"
-
-
-                  className="AddPost-Input"
-                  type="text"
-                  label="Body"
-                  name="postBody"
-                  onChange={userInput("postBody")}
-                  value={payload.postBody}
-                  style={{ color: "textSecondary", variant: "body1", width: "100%", padding: 10, borderRadius: 10 }}
+            <Fade in={open}>
+              <Card xs={12} md={12}>
+                <CardHeader
+                  xs={12}
+                  md={12}
+                  title={
+                    <Typography
+                      variant="h5"
+                      color="textSecondary"
+                      component="p"
+                      style={{
+                        alignItems: "center",
+                        justifyContent: "center",
+                        display: "flex",
+                      }}
+                    >
+                      Create Post
+                    </Typography>
+                  }
+                  id="postwidth"
                 />
+                <Card>
+                  <CardHeader
+                    avatar={
+                      <Avatar
+                        src={data.profilePic}
+                        aria-label="recipe"
+                        className={classes.avatar}
+                      ></Avatar>
+                    }
+                    title={data.fname + " " + data.lname}
+                    style={{ width: "100%" }}
+                  />
 
-              </CardContent>
+                  <CardContent>
+                    <textarea
+                      className={classes.textarea1}
+                      id="textarea"
+                      placeholder={"What's on your mind, " + data.fname + "?"}
+                      className="AddPost-Input"
+                      type="text"
+                      label="Body"
+                      name="postBody"
+                      onChange={userInput("postBody")}
+                      value={payload.postBody}
+                      style={{
+                        color: "textSecondary",
+                        variant: "body1",
+                        width: "100%",
+                        padding: 10,
+                        borderRadius: 10,
+                      }}
+                    />
+                  </CardContent>
 
-              <CardContent style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", }}>
+                  <CardContent
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      type="file"
+                      onChange={handleChange}
+                      accept="image/*"
+                    >
+                      Upload
+                      <ImageIcon />
+                    </Button>
 
-                <Button variant='contained' color='primary' type="file" onChange={handleChange} accept="image/*">
-                  Upload<ImageIcon />
-                </Button>
-
-                <Button
-                  variant='contained'
-                  color='primary'
-                  onClick={handleUpload}
-                >
-                  Post
-                </Button>
-              </CardContent>
-            </Card>
-          </Card>
-
-
-        </Fade>
-      </Modal>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={handleUpload}
+                    >
+                      Post
+                    </Button>
+                  </CardContent>
+                </Card>
+              </Card>
+            </Fade>
+          </Modal>
+        </div>
+      ))}
     </Card>
-
-
-
-
   );
 }
