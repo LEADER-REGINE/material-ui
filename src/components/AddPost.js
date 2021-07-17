@@ -286,11 +286,15 @@ export default function ImageUpload() {
                     <Button
                       variant="contained"
                       color="primary"
-                      type="file"
-                      onChange={handleChange}
-                      accept="image/*"
+                      component="label"
                     >
                       Upload
+                      <input
+                        type="file"
+                        onChange={handleChange}
+                        accept="image/*"
+                        hidden
+                      />
                       <ImageIcon />
                     </Button>
 

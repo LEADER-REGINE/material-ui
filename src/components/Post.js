@@ -29,18 +29,18 @@ export default function Post({ states }) {
       maxWidth: 600,
     },
     media: {
-      height: 'auto',
-      paddingTop: '100%', // 16:9
+      height: "auto",
+      paddingTop: "100%", // 16:9
     },
     expand: {
-      transform: 'rotate(0deg)',
-      marginLeft: 'auto',
-      transition: theme.transitions.create('transform', {
+      transform: "rotate(0deg)",
+      marginLeft: "auto",
+      transition: theme.transitions.create("transform", {
         duration: theme.transitions.duration.shortest,
       }),
     },
     expandOpen: {
-      transform: 'rotate(180deg)',
+      transform: "rotate(180deg)",
     },
     avatar: {
       backgroundColor: red[500],
@@ -50,6 +50,7 @@ export default function Post({ states }) {
 
   const classes = useStyles();
 
+  const [image, setImage] = useState(false);
   const [expanded, setExpanded] = React.useState(false);
   const [documentId, setdocumentId] = useState("");
   const [comments, setcomments] = useState({
@@ -99,7 +100,7 @@ export default function Post({ states }) {
                     },
                     { merge: true }
                   );
-                  batch.commit().then(() => { });
+                  batch.commit().then(() => {});
                 });
               });
           } else {
@@ -134,7 +135,7 @@ export default function Post({ states }) {
                           },
                           { merge: true }
                         );
-                        batch.commit().then(() => { });
+                        batch.commit().then(() => {});
                       });
                     });
                 });

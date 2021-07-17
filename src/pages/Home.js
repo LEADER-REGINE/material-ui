@@ -31,14 +31,10 @@ const useStyles = makeStyles((theme) => ({
   },
 
   AddPostContainer: {
-    marginTop:20,
+    marginTop: 20,
   },
 
-  homeNav: {
-    
-  }
-
-  
+  homeNav: {},
 }));
 
 export default function Home() {
@@ -61,6 +57,7 @@ export default function Home() {
   const [userdata, setuserdata] = useState({
     user: [],
   });
+
 
   const [payload, setPayload] = useState({
     commentBody: "",
@@ -235,24 +232,22 @@ export default function Home() {
     <div className={classes.root}>
       <Nav></Nav>
 
-
-      <Container className={classes.homeNav} >
-        <Grid
-          container
-          spacing={3}
-          
-        >
-          <Grid  item xs={12} md={12} className={classes.AddPostContainer} id ="AddPostContainer">
+      <Container className={classes.homeNav}>
+        <Grid container spacing={3}>
+          <Grid
+            item
+            xs={12}
+            md={12}
+            className={classes.AddPostContainer}
+            id="AddPostContainer"
+          >
             <AddPost />
           </Grid>
-          {
-            state.posts.map((states) => (
-              <Grid item  xs={12} md={12}>
-
-                <Post states={states} />
-              </Grid>
-            ))
-          }
+          {state.posts.map((states) => (
+            <Grid item xs={12} md={12}>
+              <Post states={states} />
+            </Grid>
+          ))}
         </Grid>
       </Container>
     </div>
