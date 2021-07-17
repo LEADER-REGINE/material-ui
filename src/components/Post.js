@@ -1,15 +1,25 @@
-import { Avatar, Card, CardContent, CardHeader, CardMedia, CardActions, Collapse, IconButton, makeStyles, Typography } from '@material-ui/core'
-import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import clsx from 'clsx';
+import {
+  Avatar,
+  Card,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  CardActions,
+  Collapse,
+  IconButton,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
+import { red } from "@material-ui/core/colors";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import ShareIcon from "@material-ui/icons/Share";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 import firebase from "../utils/firebase";
 
 export default function Post({ states }) {
-
   const user = firebase.auth().currentUser;
   const db = firebase.firestore();
   var UID = user.uid;
@@ -36,15 +46,29 @@ export default function Post({ states }) {
       backgroundColor: red[500],
     },
   }));
-
   const [isClick, setClick] = useState(false);
 
   const classes = useStyles();
 
   const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
+  const [documentId, setdocumentId] = useState("");
+  const [comments, setcomments] = useState({
+    comment: [],
+  });
+  const handleExpandClick = (docId) => {
     setExpanded(!expanded);
+    setdocumentId(docId);
+    postsRef
+      .doc(docId)
+      .collection("commentCollection")
+      .orderBy("createdAt", "desc")
+      .onSnapshot((doc) => {
+        let commentList = [];
+        doc.forEach((comment) => {
+          commentList.push(comment.data());
+        });
+        setcomments({ comment: commentList });
+      });
   };
 
   const heartPost = (docId) => {
@@ -120,6 +144,15 @@ export default function Post({ states }) {
     });
   };
 
+  const [payload, setPayload] = useState({
+    commentBody: "",
+    author: "",
+  });
+
+  const userInput = (prop) => (e) => {
+    setPayload({ ...payload, [prop]: e.target.value });
+  };
+
   var userRef = db.collection("users").doc(UID);
   var postsRef = db.collection("posts");
 
@@ -127,34 +160,41 @@ export default function Post({ states }) {
   var batch = db.batch();
   const timestamp = firebase.firestore.FieldValue.serverTimestamp;
 
+  function handleComment() {
+    let date = new Date();
+    let commentDate = date.toLocaleString();
 
-
+    userRef.get().then((doc) => {
+      let author = doc.data().fname + " " + doc.data().lname;
+      let profilePic = doc.data().profilePic;
+      postsRef
+        .doc(documentId)
+        .collection("commentCollection")
+        .add({
+          comment: payload.commentBody,
+          author: author,
+          createdAt: timestamp(),
+          postedDate: commentDate,
+          userID: UID,
+          profilePic: profilePic,
+        })
+        .then(() => {});
+    });
+  }
   return (
     <Card className={classes.root} elevation={2} id="cardPost">
-
-
       <CardHeader
-        avatar={
-          <Avatar className={classes.avatar} src={states.profilePic} />
-
-
-        }
+        avatar={<Avatar className={classes.avatar} src={states.profilePic} />}
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
-        title={states.postAuthor}   //author 
-
-        subheader={states.postedDate}  //date
+        title={states.postAuthor} //author
+        subheader={states.postedDate} //date
       />
 
-      <CardMedia
-        className={classes.media}
-        image={states.img_path}
-
-      />
-
+      <CardMedia className={classes.media} image={states.img_path} />
 
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
@@ -164,13 +204,15 @@ export default function Post({ states }) {
 
       <CardActions disableSpacing>
         {states.heartCtr}
-        <IconButton aria-label="add to favorites"
+        <IconButton
+          aria-label="add to favorites"
           value="Heart"
           isclick={isClick}
           onClick={() => {
             heartPost(states.postID);
             setClick(!isClick);
-          }}>
+          }}
+        >
           <FavoriteIcon />
         </IconButton>
         {/* <IconButton aria-label="share">
@@ -180,22 +222,32 @@ export default function Post({ states }) {
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
           })}
-          onClick={handleExpandClick}
+          onClick={() => handleExpandClick(states.postID)}
           aria-expanded={expanded}
           aria-label="show more"
         >
-          <ExpandMoreIcon />
+          <ExpandMoreIcon></ExpandMoreIcon>
         </IconButton>
       </CardActions>
 
-
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-
+          {comments.comment.map((comment) => (
+            <div>
+              <h4>{comment.author}</h4>
+              <p>{comment.comment}</p>
+            </div>
+          ))}
+          <input
+            type="text"
+            label="Comment"
+            name="commentBody"
+            onChange={userInput("commentBody")}
+            value={payload.commentBody}
+          ></input>
+          <button onClick={() => handleComment()}>Comment</button>
         </CardContent>
       </Collapse>
-
-
     </Card>
-  )
+  );
 }

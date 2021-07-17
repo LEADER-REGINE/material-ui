@@ -4,19 +4,16 @@ import { Link } from "react-router-dom";
 import { Button, makeStyles, Typography } from "@material-ui/core";
 import "../components/css/Nav.css";
 
-
-import { slide as Menu } from 'react-burger-menu';
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
-import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
-import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
-import SettingsIcon from '@material-ui/icons/Settings';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MenuIcon from '@material-ui/icons/Menu';
+import { slide as Menu } from "react-burger-menu";
+import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
+import PersonOutlineOutlinedIcon from "@material-ui/icons/PersonOutlineOutlined";
+import ExitToAppOutlinedIcon from "@material-ui/icons/ExitToAppOutlined";
+import SettingsIcon from "@material-ui/icons/Settings";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import MenuIcon from "@material-ui/icons/Menu";
 import classNames from "classnames";
 
-
 const useStyles = makeStyles((theme) => ({
-
 
   // navContainer: {
   //   backgroundColor: "#3BD98A",
@@ -32,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
     display: "flex",
     justifyContent: "center",
-    position: "fixed"
+    position: "fixed",
   },
 
   navItems: {
@@ -40,12 +37,11 @@ const useStyles = makeStyles((theme) => ({
   },
 
   navList: {
-    display: 'flex',
+    display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "center",
     marginTop: 10,
-
   },
 
   but: {
@@ -73,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   label: {
-    textTransform: 'capitalize',
+    textTransform: "capitalize",
   },
   
 
@@ -163,17 +159,8 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-
-
-
-
-
-
-
-
-
-
-export default function Nav() {// eslint-disable-next-line
+export default function Nav() {
+  // eslint-disable-next-line
   const [values, setValues] = useState({
     isAuthenticated: false,
   });
@@ -182,22 +169,8 @@ export default function Nav() {// eslint-disable-next-line
 
   const logout = (e) => {
     firebase.auth().signOut();
-
   };
 
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        setValues({ isAuthenticated: true });
-        let x = document.getElementById("logout");
-        x.style.display = "inline";
-      } else {
-        setValues({ isAuthenticated: false });
-        let x = document.getElementById("logout");
-        x.style.display = "none";
-      }
-    });
-  }, []);
   return (
     <div>
       <div className={classes.navContainer} id="sideNav">
@@ -206,7 +179,14 @@ export default function Nav() {// eslint-disable-next-line
             <li className={classes.navList}>
               <Button component={Link} to="/profile" className={classes.but} classes={{ label: classes.label }}>
                 <PersonOutlineOutlinedIcon className={classes.navIcon} />
-                <Typography variant="h6" underlineNone className={classes.linkText}>   Profile</Typography>
+                <Typography
+                  variant="h6"
+                  underlineNone
+                  className={classes.linkText}
+                >
+                  {" "}
+                  Profile
+                </Typography>
               </Button>
             </li>
 
@@ -229,14 +209,28 @@ export default function Nav() {// eslint-disable-next-line
             <li className={classes.navList}>
               <Button component={Link} onClick={logout} className={classes.but} classes={{ label: classes.label }}>
                 <SettingsIcon className={classes.navIcon} />
-                <Typography variant="h6" underlineNone className={classes.linkText}>   Settings</Typography>
+                <Typography
+                  variant="h6"
+                  underlineNone
+                  className={classes.linkText}
+                >
+                  {" "}
+                  Settings
+                </Typography>
               </Button>
             </li>
 
             <li className={classes.navList}>
               <Button component={Link} onClick={logout} className={classes.but} classes={{ label: classes.label }}>
                 <ExitToAppOutlinedIcon className={classes.navIcon} />
-                <Typography variant="h6" underlineNone className={classes.linkText}>   Log out</Typography>
+                <Typography
+                  variant="h6"
+                  underlineNone
+                  className={classes.linkText}
+                >
+                  {" "}
+                  Log out
+                </Typography>
               </Button>
             </li>
           </ul>
