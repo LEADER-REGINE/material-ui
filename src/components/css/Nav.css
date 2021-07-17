@@ -3,12 +3,20 @@
     padding: 0 5px;
 }
 
+#center{
+    margin: 0 auto;
+}
+
 #burger{
     display: none   ;
 }
 
 #addPost1{
     margin: 0 auto;
+}
+
+#sideNav1{
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.19);
 }
 
  
@@ -49,19 +57,18 @@
 
     #burgerContainer1{
         display: inline;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.19);
     }
 
     .homeNav{
         margin-top: 50px;
     }
 
-    #profileContainer1{
+    #profileContainer1, #notiTop, #AddPostContainer{
         margin-top: 110px;
     }
 
-    #AddPostContainer{
-        margin-top: 110px;
-    }
+    
   }
 
 

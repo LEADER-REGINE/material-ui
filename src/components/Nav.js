@@ -174,7 +174,7 @@ export default function Nav() {
   return (
     <div>
       <div className={classes.navContainer} id="sideNav">
-        <nav className={classes.nav}>
+        <nav className={classes.nav} id="sideNav1">
           <ul className={classes.navItems}>
             
 

@@ -13,6 +13,11 @@ const useStyles = makeStyles((theme) => ({
      display: "flex",
   },
 
+  avatar1: {
+    backgroundColor: "Primary",
+    width: 300,
+    height: 300
+  },
 }));
 
 
@@ -49,7 +54,7 @@ export default function Profile() {
   return (
     <div className={classes.root}>
       <Nav />
-      <Grid item xs={12} md={12}>
+      <Grid item xs={12} md={12} id="notiTop">
         <Card id="addPost1" style={{ maxWidth: 600, padding: 20 }}>
           <CardHeader
             title="Notifications"

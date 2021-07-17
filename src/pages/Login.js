@@ -192,8 +192,10 @@ export default function Login() {
               <Button
                 variant="contained"
                 color="primary"
+                style={{ textTransform:"capitalize"}}
                 onClick={signin}>
                 Log In
+                
               </Button>
             </div>
 

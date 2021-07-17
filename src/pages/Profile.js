@@ -68,14 +68,12 @@ export default function Profile() {
 
 
 
+
+
+
+
+
   
-
-
-
-
-
-
-
 
   const classes = useStyles();
 
@@ -217,7 +215,11 @@ export default function Profile() {
                   //   </Button>
 
                   // }
-                  title={user.fname + " " + user.lname}
+                  title={
+                    <Typography variant="h6" color="textPrimary" component="p">
+                      {user.fname + " " + user.lname}
+                      </Typography>
+                  }
                   subheader={<p>Posts: {getData.postCount}</p>}
                 />
                 

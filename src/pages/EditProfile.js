@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import firebase, { storage } from "../utils/firebase";
 import { useHistory } from "react-router-dom";
-import { Container, makeStyles, TextField } from "@material-ui/core";
+import { Avatar, Button, Card, CardHeader, Container, makeStyles, TextField } from "@material-ui/core";
 
 import Nav from "../components/Nav";
 
@@ -14,6 +14,19 @@ import Nav from "../components/Nav";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+
+  },
+
+  root1: {
+    maxWidth: 600,
+  },
+
+  avatar1: {
+    backgroundColor: "Primary",
+    width: 300,
+    height: 300,
+
+
   },
 
 }));
@@ -111,45 +124,62 @@ export default function ImageUpload() {
 
       <Nav></Nav>
       <Container>
-        <div className="EditProfile-1">
-          {userdata.user.map((user) => (
-            <div>
-              <img src={user.profilePic} alt="Profile" className="EditProfile-img" />
-            </div>
-          ))}
+        <Card className={classes.root1} id="profileContainer1">
+          <div className="EditProfile-1">
+            {userdata.user.map((user) => (
+              <CardHeader
+                id="center"
+                avatar={
+                  <div id="center">
+                    <Avatar className={classes.avatar1} id="center" style={{
+                      display: "flex", flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "center"
+                    }}>
+                      <img src={user.profilePic} style={{ width: '100%', height: '100%' }}></img>
+                    </Avatar>
+                  </div>
+                }
+              />
+            ))}
 
-          <form onSubmit={updatePic}>
-            <input type="file" onChange={handleChange} accept="image/*" />
-            <button disabled={!file}>Upload</button>
-          </form>
-        </div>
-        <div className="EditProfile-1">
-          <form onSubmit={handleUpload}>
-            <TextField
-              id="outlined-basic"
-              type="text"
-              label="First Name"
-              name="fname"
-              onChange={userInput("fname")}
-              value={payload.fname}
-              variant="outlined"
-              style={{ width: "100%" }}
-            />
+            <form onSubmit={updatePic}>
+              <input type="file" onChange={handleChange} accept="image/*" />
+              <button disabled={!file}>Upload</button>
+            </form>
+          </div>
+          <div className="EditProfile-1">
+            <form onSubmit={handleUpload}>
+              <TextField
+                id="outlined-basic"
+                type="text"
+                label="First Name"
+                name="fname"
+                onChange={userInput("fname")}
+                value={payload.fname}
+                variant="outlined"
+                style={{ width: "100%", marginTop: 10, marginBottom: 10 }}
+              />
 
-            <TextField
-              id="outlined-basic"
-              type="text"
-              label="Last Name"
-              name="lname"
-              onChange={userInput("lname")}
-              variant="outlined"
-              value={payload.lname}
-              style={{ width: "100%" }}
-            />
+              <TextField
+                id="outlined-basic"
+                type="text"
+                label="Last Name"
+                name="lname"
+                onChange={userInput("lname")}
+                variant="outlined"
+                value={payload.lname}
+                style={{ width: "100%", marginTop: 10 }}
+              />
 
-            <button>Update Profile</button>
-          </form>
-        </div>
+              <Button
+                onClick={handleUpload}
+                variant='contained'
+                color='primary'
+                style={{ textTransform: 'capitalize', marginTop: 10, marginBottom: 10 }}><p style={{ color: " #fff" }}>Update Profile</p></Button>
+            </form>
+          </div>
+        </Card>
       </Container>
     </div>
   );
