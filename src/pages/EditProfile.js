@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
 import firebase, { storage } from "../utils/firebase";
 import { useHistory } from "react-router-dom";
-import { Avatar, Button, Card, CardHeader, Container, makeStyles, TextField } from "@material-ui/core";
+import {
+  Avatar,
+  Button,
+  Card,
+  CardHeader,
+  Container,
+  makeStyles,
+  TextField,
+} from "@material-ui/core";
 
 import Nav from "../components/Nav";
-
-
-
-
-
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-
   },
 
   root1: {
@@ -25,20 +26,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "Primary",
     width: 300,
     height: 300,
-
-
   },
-
 }));
 
-
-
-
-
-
 export default function ImageUpload() {
-
-
   const classes = useStyles();
 
   const user = firebase.auth().currentUser;
@@ -120,25 +111,31 @@ export default function ImageUpload() {
 
   return (
     <div className={classes.root}>
-
-
       <Nav></Nav>
       <Container>
-
         <Card className={classes.root1} id="profileContainer1">
-          <h1 style={{textAlign:"center", margin: 20}}>Edit Profile</h1>
+          <h1 style={{ textAlign: "center", margin: 20 }}>Edit Profile</h1>
           <div className="EditProfile-1">
             {userdata.user.map((user) => (
               <CardHeader
-                style={{ display: 'flex', flexDirection: 'column' }}
+                style={{ display: "flex", flexDirection: "column" }}
                 avatar={
                   <div id="center">
-                    <Avatar className={classes.avatar1} id="center" style={{
-                      display: "flex", flexDirection: "column",
-                      justifyContent: "center",
-                      alignItems: "center"
-                    }}>
-                      <img src={user.profilePic} style={{ width: '100%', height: '100%' }}></img>
+                    <Avatar
+                      className={classes.avatar1}
+                      id="center"
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      {/* eslint-disable-next-line */}
+                      <img
+                        src={user.profilePic}
+                        style={{ width: "100%", height: "100%" }}
+                      ></img>
                     </Avatar>
                   </div>
                 }
@@ -173,16 +170,27 @@ export default function ImageUpload() {
                 value={payload.lname}
                 style={{ width: "100%", marginTop: 10 }}
               />
-              <div style={{
-                display: 'flex', flexDirection: "row",
-                justifyContent: "flex-end",
-                alignItems: "center"
-              }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "flex-end",
+                  alignItems: "center",
+                }}
+              >
                 <Button
                   onClick={handleUpload}
-                  variant='contained'
-                  color='primary'
-                  style={{ textTransform: 'capitalize', marginTop: 10, marginBottom: 10 }}><p style={{ color: " #fff" }}>Update Profile</p></Button> </div>
+                  variant="contained"
+                  color="primary"
+                  style={{
+                    textTransform: "capitalize",
+                    marginTop: 10,
+                    marginBottom: 10,
+                  }}
+                >
+                  <p style={{ color: " #fff" }}>Update Profile</p>
+                </Button>{" "}
+              </div>
             </form>
           </div>
         </Card>

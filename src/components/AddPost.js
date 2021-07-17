@@ -6,15 +6,11 @@ import {
   Card,
   CardHeader,
   Fade,
-  IconButton,
   makeStyles,
   Modal,
-  TextareaAutosize,
   Backdrop,
   Typography,
   CardContent,
-  CardActions,
-  Container,
 } from "@material-ui/core";
 import ImageIcon from "@material-ui/icons/Image";
 
@@ -48,7 +44,7 @@ export default function ImageUpload() {
   const db = firebase.firestore();
   var UID = user.uid;
   const id = uuid.v4();
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState(null); // eslint-disable-next-line
   const [url, setURL] = useState("");
   const [payload, setPayload] = useState({
     postBody: "",
@@ -259,7 +255,6 @@ export default function ImageUpload() {
                       className={classes.textarea1}
                       id="textarea"
                       placeholder={"What's on your mind, " + data.fname + "?"}
-                      className="AddPost-Input"
                       type="text"
                       label="Body"
                       name="postBody"

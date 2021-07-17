@@ -1,43 +1,12 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { TextField, Button, Card, CardMedia, CardHeader, IconButton, Container, Grid, Typography, CardContent } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import firebase from "../utils/firebase";
 
 import image3 from "../images/image3.png";
 
 import "../components/css/Login.css";
-
-const useStyles = makeStyles({
-
-  loginContainer: {
-    width: 400
-  },
-
-
-  field: {
-    marginTop: 20,
-
-    display: "block"
-  },
-
-  loginContainer: {
-    display: "flex",
-    flexDirection: "row"
-  },
-
-  leftImage: {
-    padding: 40,
-    width: 500
-  }
-})
-
-
-
-
-
-
 
 export default function Register() {
   const [payload, setPayload] = useState({
@@ -96,85 +65,6 @@ export default function Register() {
   };
 
   return (
-
-    // <Container>
-    //   <Grid Container>
-    //     <Card className={classes.loginContainer}>
-    //       <CardMedia className={classes.leftImage} md={12}> 
-
-    //         <img src={image3} alt="background" className="image3" />
-    //       </CardMedia>
-
-
-
-
-    //       <CardContent md={12}>
-    //         <Typography
-    //           variant="h5"
-    //           align="center">
-    //           Log In
-    //         </Typography>
-    //         <form>
-    //           <TextField
-    //             className={classes.field}
-    //             id="outlined-basic"
-    //             type="text"
-    //             label="Email"
-    //             name="email"
-    //             onChange={userInput("email")}
-    //             value={payload.email}
-    //             variant="outlined"
-    //             fullWidth
-    //             required
-    //           />
-    //           <TextField
-    //             className={classes.field}
-    //             id="outlined-basic"
-    //             label="Password"
-    //             variant="outlined"
-    //             type="password"
-    //             name="password"
-    //             onChange={userInput("password")}
-    //             value={payload.password}
-    //             fullWidth
-    //             required
-
-    //           />
-
-    //           <Button
-    //             className={classes.field}
-    //             variant="contained"
-    //             color="primary"
-    //             onClick={signin}
-    //             fullWidth
-    //             required
-    //           >
-    //             Log In
-    //           </Button>
-
-    //           <Button
-    //             className={classes.field}
-    //             variant="contained"
-    //             color="primary"
-    //             onClick={signin}
-    //             component={Link}
-    //             to="/register"
-    //             fullWidth
-    //             required
-    //             align="center"
-    //           >
-    //             Register
-    //           </Button>
-    //         </form>
-
-    //       </CardContent>
-    //     </Card>
-    //   </Grid>
-    // </Container>
-
-
-
-
     <div className="login-container">
       <div className="login-item">
         <div className="login-left">

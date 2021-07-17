@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import firebase from "../utils/firebase";
 import { Link } from "react-router-dom";
 import { Button, makeStyles, Typography } from "@material-ui/core";
@@ -11,17 +11,8 @@ import ExitToAppOutlinedIcon from "@material-ui/icons/ExitToAppOutlined";
 import SettingsIcon from "@material-ui/icons/Settings";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MenuIcon from "@material-ui/icons/Menu";
-import classNames from "classnames";
 
 const useStyles = makeStyles((theme) => ({
-
-  // navContainer: {
-  //   backgroundColor: "#3BD98A",
-  //   width: 300,
-  //   height: "100vh",
-  //   position: "fixed",
-  // },
-
   nav: {
     backgroundColor: "#3BD98A",
     opacity: 1,
@@ -71,7 +62,6 @@ const useStyles = makeStyles((theme) => ({
   label: {
     textTransform: "capitalize",
   },
-  
 
   navContainer: {
     width: 250,
@@ -90,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#3BD98A",
     width: "100%",
     height: 76,
-    position:"fixed",
+    position: "fixed",
     zIndex: 1,
     display: "none",
   },
@@ -99,48 +89,47 @@ const useStyles = makeStyles((theme) => ({
     margin: 20,
     backgroundColor: "#3BD98A",
     color: "#f3f3f3",
-    width: '36px',
-    height: '30px',
+    width: "36px",
+    height: "30px",
   },
 
   bmBurgerButton: {
     zIndex: 1,
-    position: 'fixed',
-    width: '36px',
-    height: '30px',
-    left: '0px',
-    top: '0px',
-
+    position: "fixed",
+    width: "36px",
+    height: "30px",
+    left: "0px",
+    top: "0px",
   },
   bmBurgerBars: {
     backgroundColor: "#3BD98A",
     marginTop: -80,
   },
   bmBurgerBarsHover: {
-    background: '#a90000'
+    background: "#a90000",
   },
   bmCrossButton: {
-    height: '24px',
-    width: '24px'
+    height: "24px",
+    width: "24px",
   },
   bmCross: {
-    background: '#bdc3c7'
+    background: "#bdc3c7",
   },
   bmMenuWrap: {
-    position: 'fixed',
-    height: '100%'
+    position: "fixed",
+    height: "100%",
   },
   bmMenu: {
-    background: '#373a47',
-    padding: '2.5em 1.5em 0',
-    fontSize: '1.15em'
+    background: "#373a47",
+    padding: "2.5em 1.5em 0",
+    fontSize: "1.15em",
   },
   bmMorphShape: {
-    fill: '#373a47'
+    fill: "#373a47",
   },
   bmItemList: {
-    color: '#b8b7ad',
-    padding: '0.8em',
+    color: "#b8b7ad",
+    padding: "0.8em",
 
     textDecoration: "none",
 
@@ -150,21 +139,14 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   bmItem: {
-    display: 'inline-block'
+    display: "inline-block",
   },
   bmOverlay: {
-    background: 'rgba(0, 0, 0, 0.3)'
-  }
-
-
+    background: "rgba(0, 0, 0, 0.3)",
+  },
 }));
 
 export default function Nav() {
-  // eslint-disable-next-line
-  const [values, setValues] = useState({
-    isAuthenticated: false,
-  });
-
   const classes = useStyles();
 
   const logout = (e) => {
@@ -176,18 +158,33 @@ export default function Nav() {
       <div className={classes.navContainer} id="sideNav">
         <nav className={classes.nav} id="sideNav1">
           <ul className={classes.navItems}>
-            
-
             <li className={classes.navList}>
-              <Button component={Link} to="/home" className={classes.but} classes={{ label: classes.label }}>
+              <Button
+                component={Link}
+                to="/home"
+                className={classes.but}
+                classes={{ label: classes.label }}
+              >
                 <HomeOutlinedIcon className={classes.navIcon} />
 
-                <Typography variant="h6" underlineNone className={classes.linkText}>   Home</Typography>
+                <Typography
+                  variant="h6"
+                  underlineNone
+                  className={classes.linkText}
+                >
+                  {" "}
+                  Home
+                </Typography>
               </Button>
             </li>
 
             <li className={classes.navList}>
-              <Button component={Link} to="/profile" className={classes.but} classes={{ label: classes.label }}>
+              <Button
+                component={Link}
+                to="/profile"
+                className={classes.but}
+                classes={{ label: classes.label }}
+              >
                 <PersonOutlineOutlinedIcon className={classes.navIcon} />
                 <Typography
                   variant="h6"
@@ -201,15 +198,32 @@ export default function Nav() {
             </li>
 
             <li className={classes.navList}>
-              <Button component={Link} to="/notifications" className={classes.but} classes={{ label: classes.label }}>
-                < NotificationsIcon className={classes.navIcon} />
+              <Button
+                component={Link}
+                to="/notifications"
+                className={classes.but}
+                classes={{ label: classes.label }}
+              >
+                <NotificationsIcon className={classes.navIcon} />
 
-                <Typography variant="h6" underlineNone className={classes.linkText}>   Notification</Typography>
+                <Typography
+                  variant="h6"
+                  underlineNone
+                  className={classes.linkText}
+                >
+                  {" "}
+                  Notification
+                </Typography>
               </Button>
             </li>
 
             <li className={classes.navList}>
-              <Button component={Link} to="/editprofile" className={classes.but} classes={{ label: classes.label }}>
+              <Button
+                component={Link}
+                to="/editprofile"
+                className={classes.but}
+                classes={{ label: classes.label }}
+              >
                 <SettingsIcon className={classes.navIcon} />
                 <Typography
                   variant="h6"
@@ -223,7 +237,12 @@ export default function Nav() {
             </li>
 
             <li className={classes.navList}>
-              <Button component={Link} onClick={logout} className={classes.but} classes={{ label: classes.label }}>
+              <Button
+                component={Link}
+                onClick={logout}
+                className={classes.but}
+                classes={{ label: classes.label }}
+              >
                 <ExitToAppOutlinedIcon className={classes.navIcon} />
                 <Typography
                   variant="h6"
@@ -239,49 +258,81 @@ export default function Nav() {
         </nav>
       </div>
 
-
-
-      <div className={classes.burgerContainer1} id="burgerContainer1">
-
-      </div>
+      <div className={classes.burgerContainer1} id="burgerContainer1"></div>
 
       <div className={classes.burgerContainer} id="burger">
-        <div className={classes.bmBurgerButton} >
-          <Menu className={classes.bmBurgerBars} customBurgerIcon={<MenuIcon className={classes.burgerIcon} />} >
-            
-
-            <Link className="menu-item" className={classes.bmItemList} to="/home">
+        <div className={classes.bmBurgerButton}>
+          <Menu
+            className={classes.bmBurgerBars}
+            customBurgerIcon={<MenuIcon className={classes.burgerIcon} />}
+          >
+            <Link className={(classes.bmItemList, "menu-item")} to="/home">
               <div className={classes.bmItemList}>
                 <HomeOutlinedIcon className={classes.navIcon} />
-                <Typography variant="h6" underlineNone className={classes.linkText}>    Home  </Typography>
+                <Typography
+                  variant="h6"
+                  underlineNone
+                  className={classes.linkText}
+                >
+                  {" "}
+                  Home{" "}
+                </Typography>
               </div>
             </Link>
 
-            <Link className={classes.bmItemList} to="/profile" >
+            <Link className={classes.bmItemList} to="/profile">
               <div className={classes.bmItemList}>
                 <PersonOutlineOutlinedIcon className={classes.navIcon} />
-                <Typography variant="h6" underlineNone className={classes.linkText}>   Profile</Typography>
+                <Typography
+                  variant="h6"
+                  underlineNone
+                  className={classes.linkText}
+                >
+                  {" "}
+                  Profile
+                </Typography>
               </div>
             </Link>
 
             <Link className={classes.bmItemList} to="/notifications">
               <div className={classes.bmItemList}>
-                < NotificationsIcon className={classes.navIcon} />
-                <Typography variant="h6" underlineNone className={classes.linkText}>   Notification </Typography>
+                <NotificationsIcon className={classes.navIcon} />
+                <Typography
+                  variant="h6"
+                  underlineNone
+                  className={classes.linkText}
+                >
+                  {" "}
+                  Notification{" "}
+                </Typography>
               </div>
             </Link>
 
             <Link className={classes.bmItemList} to="/EditProfile">
               <div className={classes.bmItemList}>
                 <SettingsIcon className={classes.navIcon} />
-                <Typography variant="h6" underlineNone className={classes.linkText}>   Setting  </Typography>
+                <Typography
+                  variant="h6"
+                  underlineNone
+                  className={classes.linkText}
+                >
+                  {" "}
+                  Setting{" "}
+                </Typography>
               </div>
             </Link>
 
             <Link onClick={logout} className={classes.bmItemList} to="">
               <div className={classes.bmItemList}>
                 <ExitToAppOutlinedIcon className={classes.navIcon} />
-                <Typography variant="h6" underlineNone className={classes.linkText}>   Log out</Typography>
+                <Typography
+                  variant="h6"
+                  underlineNone
+                  className={classes.linkText}
+                >
+                  {" "}
+                  Log out
+                </Typography>
               </div>
             </Link>
           </Menu>

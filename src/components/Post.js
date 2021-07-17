@@ -6,21 +6,18 @@ import {
   CardMedia,
   CardActions,
   Collapse,
-  
   IconButton,
   makeStyles,
   Typography,
   TextField,
   Button,
-  Container,
 } from "@material-ui/core";
 import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import clsx from "clsx";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import firebase from "../utils/firebase";
 
 export default function Post({ states }) {
@@ -54,7 +51,6 @@ export default function Post({ states }) {
 
   const classes = useStyles();
 
-  const [image, setImage] = useState(false);
   const [expanded, setExpanded] = React.useState(false);
   const [documentId, setdocumentId] = useState("");
   const [comments, setcomments] = useState({
@@ -104,7 +100,7 @@ export default function Post({ states }) {
                     },
                     { merge: true }
                   );
-                  batch.commit().then(() => { });
+                  batch.commit().then(() => {});
                 });
               });
           } else {
@@ -139,7 +135,7 @@ export default function Post({ states }) {
                           },
                           { merge: true }
                         );
-                        batch.commit().then(() => { });
+                        batch.commit().then(() => {});
                       });
                     });
                 });
@@ -183,7 +179,7 @@ export default function Post({ states }) {
           userID: UID,
           profilePic: profilePic,
         })
-        .then(() => { });
+        .then(() => {});
     });
   }
   return (
@@ -243,11 +239,10 @@ export default function Post({ states }) {
         <CardContent>
           {comments.comment.map((comment) => (
             <div>
-              <Card style={{marginTop:10, marginBottom:10, padding:10}}>
+              <Card style={{ marginTop: 10, marginBottom: 10, padding: 10 }}>
                 <h4>{comment.author}</h4>
-                <Typography  variant="body2">{comment.comment}</Typography>
+                <Typography variant="body2">{comment.comment}</Typography>
               </Card>
-              
             </div>
           ))}
           <TextField
@@ -256,10 +251,18 @@ export default function Post({ states }) {
             name="commentBody"
             onChange={userInput("commentBody")}
             value={payload.commentBody}
-            style={{width:'100%'}}
-          />  
-          <div style={{display:"flex", flexDirection:"row", justifyContent:"flex-end", alignItems:"center", marginTop: 20}}>
-          <Button onClick={() => handleComment()} >Comment</Button>
+            style={{ width: "100%" }}
+          />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "flex-end",
+              alignItems: "center",
+              marginTop: 20,
+            }}
+          >
+            <Button onClick={() => handleComment()}>Comment</Button>
           </div>
         </CardContent>
       </Collapse>

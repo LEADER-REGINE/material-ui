@@ -1,28 +1,24 @@
 import React, { useEffect, useState } from "react";
 import firebase from "../utils/firebase";
 
-
 import Nav from "../components/Nav";
-import { Card, CardContent, CardHeader, Grid, makeStyles, Typography } from "@material-ui/core";
-import FavoriteIcon from '@material-ui/icons/Favorite';
-
-
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Grid,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-     display: "flex",
+    display: "flex",
   },
-
-  
 }));
 
-
-
-
-
-
 export default function Profile() {
-
   const classes = useStyles();
 
   const user = firebase.auth().currentUser;
@@ -52,14 +48,23 @@ export default function Profile() {
       <Nav />
       <Grid item xs={12} md={12} id="notiTop">
         <Card id="addPost1" style={{ maxWidth: 600, padding: 20 }}>
-          <CardHeader
-            title="Notifications"
-          />
+          <CardHeader title="Notifications" />
           {notifs.notifs.map((notif) => (
-            <CardContent id="profileTopContainer" style={{display:'flex' ,justifyContent:"flex-start",
-            alignItems:"center", }}>
-              <FavoriteIcon color="primary" style={{marginRight: 20}}></FavoriteIcon>
-              <Typography variant="body2" color="textSecondary" component="p" >{notif.value}</Typography >
+            <CardContent
+              id="profileTopContainer"
+              style={{
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
+              }}
+            >
+              <FavoriteIcon
+                color="primary"
+                style={{ marginRight: 20 }}
+              ></FavoriteIcon>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {notif.value}
+              </Typography>
             </CardContent>
           ))}
         </Card>
