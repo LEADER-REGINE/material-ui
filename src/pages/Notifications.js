@@ -4,7 +4,7 @@ import firebase from "../utils/firebase";
 
 import Nav from "../components/Nav";
 import { Card, CardContent, CardHeader, Grid, makeStyles, Typography } from "@material-ui/core";
-
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 
 
@@ -13,11 +13,7 @@ const useStyles = makeStyles((theme) => ({
      display: "flex",
   },
 
-  avatar1: {
-    backgroundColor: "Primary",
-    width: 300,
-    height: 300
-  },
+  
 }));
 
 
@@ -60,8 +56,10 @@ export default function Profile() {
             title="Notifications"
           />
           {notifs.notifs.map((notif) => (
-            <CardContent id="profileTopContainer">
-              <Typography variant="body2" color="textSecondary" component="p">{notif.value}</Typography >
+            <CardContent id="profileTopContainer" style={{display:'flex' ,justifyContent:"flex-start",
+            alignItems:"center", }}>
+              <FavoriteIcon color="primary" style={{marginRight: 20}}></FavoriteIcon>
+              <Typography variant="body2" color="textSecondary" component="p" >{notif.value}</Typography >
             </CardContent>
           ))}
         </Card>

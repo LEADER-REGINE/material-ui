@@ -124,11 +124,13 @@ export default function ImageUpload() {
 
       <Nav></Nav>
       <Container>
+
         <Card className={classes.root1} id="profileContainer1">
+          <h1 style={{textAlign:"center", margin: 20}}>Edit Profile</h1>
           <div className="EditProfile-1">
             {userdata.user.map((user) => (
               <CardHeader
-                id="center"
+                style={{ display: 'flex', flexDirection: 'column' }}
                 avatar={
                   <div id="center">
                     <Avatar className={classes.avatar1} id="center" style={{
@@ -171,12 +173,16 @@ export default function ImageUpload() {
                 value={payload.lname}
                 style={{ width: "100%", marginTop: 10 }}
               />
-
-              <Button
-                onClick={handleUpload}
-                variant='contained'
-                color='primary'
-                style={{ textTransform: 'capitalize', marginTop: 10, marginBottom: 10 }}><p style={{ color: " #fff" }}>Update Profile</p></Button>
+              <div style={{
+                display: 'flex', flexDirection: "row",
+                justifyContent: "flex-end",
+                alignItems: "center"
+              }}>
+                <Button
+                  onClick={handleUpload}
+                  variant='contained'
+                  color='primary'
+                  style={{ textTransform: 'capitalize', marginTop: 10, marginBottom: 10 }}><p style={{ color: " #fff" }}>Update Profile</p></Button> </div>
             </form>
           </div>
         </Card>

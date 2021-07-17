@@ -264,14 +264,14 @@ export default function Nav() {
               </div>
             </Link>
 
-            <Link className={classes.bmItemList} to="/notification">
+            <Link className={classes.bmItemList} to="/notifications">
               <div className={classes.bmItemList}>
                 < NotificationsIcon className={classes.navIcon} />
                 <Typography variant="h6" underlineNone className={classes.linkText}>   Notification </Typography>
               </div>
             </Link>
 
-            <Link className={classes.bmItemList} to="/notification">
+            <Link className={classes.bmItemList} to="/EditProfile">
               <div className={classes.bmItemList}>
                 <SettingsIcon className={classes.navIcon} />
                 <Typography variant="h6" underlineNone className={classes.linkText}>   Setting  </Typography>
