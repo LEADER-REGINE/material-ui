@@ -11,7 +11,7 @@ export default function PublicRoute({
       {...rest}
       component={(props) =>
         isAuthenticated && restricted ? (
-          <Redirect to="/" />
+          <Redirect to="/home" />
         ) : (
           <Component {...props} />
         )
