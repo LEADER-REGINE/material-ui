@@ -144,6 +144,14 @@ const useStyles = makeStyles((theme) => ({
   bmOverlay: {
     background: "rgba(0, 0, 0, 0.3)",
   },
+
+  logo: {
+    display: "flex",
+    flexDirection: "row",
+    textDecoration: "none",
+    justifyContent: "center",
+    alignItems: "center",
+  }
 }));
 
 export default function Nav() {
@@ -158,6 +166,31 @@ export default function Nav() {
       <div className={classes.navContainer} id="sideNav">
         <nav className={classes.nav} id="sideNav1">
           <ul className={classes.navItems}>
+
+          <li className={classes.navList}>
+              <Button
+                component={Link}
+                to="/home"
+                className={classes.logo}
+                classes={{ label: classes.label }}
+              >
+                
+
+                <Typography
+                  variant="h6"
+                  underlineNone
+                  className={classes.linkText}
+                  id="logo"
+                >
+                   
+                  Twatter
+                </Typography>
+              </Button>
+            </li>
+
+
+
+
             <li className={classes.navList}>
               <Button
                 component={Link}
@@ -266,7 +299,7 @@ export default function Nav() {
             className={classes.bmBurgerBars}
             customBurgerIcon={<MenuIcon className={classes.burgerIcon} />}
           >
-            <Link className={(classes.bmItemList, "menu-item")} to="/home">
+            <Link className={classes.bmItemList} to="/home">
               <div className={classes.bmItemList}>
                 <HomeOutlinedIcon className={classes.navIcon} />
                 <Typography
@@ -274,8 +307,8 @@ export default function Nav() {
                   underlineNone
                   className={classes.linkText}
                 >
-                  {" "}
-                  Home{" "}
+                   
+                  Home 
                 </Typography>
               </div>
             </Link>
