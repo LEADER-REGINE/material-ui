@@ -1,8 +1,73 @@
+#profileContainer1{
+    margin: 0 auto;
+    padding: 0 5px;
+}
+
+#burger{
+    display: none   ;
+}
+
+#addPost1{
+    margin: 0 auto;
+}
+
+#profileContainer{
+    margin: 0 auto;
+}
+
+#textarea{
+    resize: none;
+    border: 1px "#3BD98A";
+}
 
 
+#textarea:focus {
+    border: 1px "#3BD98A";
+ }
+
+#cardPost{
+    margin: 0 auto;
+}
+
+#postwidth{
+    width: 600px;
+}
 @media only screen and (max-width: 600px) {
 
     #sideNav {
         display: none;
+    }
+
+    #burger{
+        display: inline;
+    }
+
+    #burgerContainer1{
+        display: inline;
+    }
+
+    .homeNav{
+        margin-top: 50px;
+    }
+
+    #profileContainer1{
+        margin-top: 110px;
+    }
+
+    #AddPostContainer{
+        margin-top: 110px;
+    }
+  }
+
+
+  @media only screen and (max-width: 700px) {
+    #postwidth{
+        width: 400px;
+    }
+  }
+
+  @media only screen and (max-width: 360px) {
+    #postwidth{
+        width: 280px;
     }
   }

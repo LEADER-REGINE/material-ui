@@ -10,8 +10,8 @@ import { DeleteOutline } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: 400,
-    maxWidth: 700,
+
+    maxWidth: 600,
     marginTop: 30,
   },
   media: {
@@ -33,9 +33,15 @@ const useStyles = makeStyles((theme) => ({
   },
   profileContainer: {
     display: "flex",
-    flexDirection: "row",
-    width: "100%",
-  }
+    // flexDirection: "row",
+    //width: "100%",
+  },
+
+  profileContainer1: {
+
+
+  },
+
 }));
 
 export default function Profile() {
@@ -139,29 +145,25 @@ export default function Profile() {
 
   return (
     <div className={classes.profileContainer}>
-      <div>
-        <Grid item xs={12} md={12}>
-          <Nav></Nav>
-        </Grid>
-      </div>
+
+      <Nav></Nav>
 
 
 
-      <div className={classes.profileContainer1}>
+      <Container className={classes.profileContainer1} id="profileContainer1" >
         <Grid
           container
           spacing={3}
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
+
           className={classes.profileContainer}
         >
 
           <Grid item xs={12} md={12} className={classes.AddPostContainer}>
-            <h1 className="recent">Recent Posts</h1>
-
+            <div id="cardPost" style={{ maxWidth:600}}> 
+              <h1 className="recent" >Recent Posts</h1>
+            </div>
             {state.posts.map((states) => (
-              <Card className={classes.root} elevation={3}>
+              <Card className={classes.root} elevation={3} id="cardPost">
 
                 <CardHeader
                   action={
@@ -171,7 +173,7 @@ export default function Profile() {
                   }
 
                   avatar={
-                    <Avatar className={classes.avatar} src={user.profilePic} />
+                    <Avatar className={classes.avatar} src={states.profilePic} />
                   }
                   title={states.postAuthor}
                   subheader={states.postedDate}
@@ -186,14 +188,14 @@ export default function Profile() {
                 <CardMedia
                   className={classes.media}
                   image={states.img_path}
-                  title="Paella dish"
+
                 />
 
               </Card>
             ))}
           </Grid>
         </Grid>
-      </div>
+      </Container>
 
 
 

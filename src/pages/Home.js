@@ -34,9 +34,14 @@ const useStyles = makeStyles((theme) => ({
   },
 
   AddPostContainer: {
-    marginTop: 20,
+    marginTop:20,
+  },
+
+  homeNav: {
+    
   }
 
+  
 }));
 
 
@@ -258,22 +263,18 @@ export default function Home() {
       <Nav></Nav>
 
 
-      <Container>
+      <Container className={classes.homeNav} >
         <Grid
           container
           spacing={3}
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-          xs={12} 
-          md={12}
+          
         >
-          <Grid item xs={12} md={12} className={classes.AddPostContainer}>
+          <Grid  item xs={12} md={12} className={classes.AddPostContainer} id ="AddPostContainer">
             <AddPost />
           </Grid>
           {
             state.posts.map((states) => (
-              <Grid item xs={12} md={12} >
+              <Grid item  xs={12} md={12}>
 
                 <Post states={states} />
               </Grid>
