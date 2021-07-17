@@ -5,7 +5,7 @@ import { red } from '@material-ui/core/colors';
 import Nav from "../components/Nav";
 
 import DeleteIcon from "@material-ui/icons/Delete";
-import { Avatar, Button, Card, CardContent, CardHeader, CardMedia, Container, Grid, IconButton, makeStyles, Typography } from "@material-ui/core";
+import { Avatar, Backdrop, Fade, Button, Card, CardContent, CardHeader, CardMedia, Container, Grid, IconButton, makeStyles, Modal, Typography } from "@material-ui/core";
 import { DeleteOutline } from "@material-ui/icons";
 import EditIcon from '@material-ui/icons/Edit';
 
@@ -49,9 +49,33 @@ const useStyles = makeStyles((theme) => ({
 
   },
 
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+
 }));
 
 export default function Profile() {
+
+
+
+
+  
+
+
+
+
+
+
+
 
   const classes = useStyles();
 
@@ -150,6 +174,17 @@ export default function Profile() {
 
 
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
   return (
     <div className={classes.profileContainer}>
 
@@ -171,19 +206,21 @@ export default function Profile() {
               <Card className={classes.root} style={{ boxShadow: "none" }} id="profileTopContainer">
                 <CardHeader
                   avatar={
-                    <Avatar className={classes.avatar1}>
-                      R
+                    <Avatar className={classes.avatar1} >
+                      <img src={user.profilePic} style={{width:'100%', height:'100%'}}></img>
                     </Avatar>
                   }
-                  action={ 
-                    <Button variant='contained' color='primary' style={{ textTransform:'capitalize', marginTop:40}}>
-                      Edit
-                      <EditIcon style={{ marginLeft: 10}}/>
-                    </Button>
-                  }
+                  // action={
+                  //   <Button onClick={handleOpen} variant='contained' color='primary' style={{ textTransform: 'capitalize', marginTop: 40 }}>
+                  //     Edit
+                  //     <EditIcon style={{ marginLeft: 10 }} />
+                  //   </Button>
+
+                  // }
                   title={user.fname + " " + user.lname}
                   subheader={<p>Posts: {getData.postCount}</p>}
                 />
+                
               </Card>
 
             ))}
@@ -201,7 +238,7 @@ export default function Profile() {
 
 
             {state.posts.map((states) => (
-              <Card className={classes.root} elevation={3} id="cardPost" style={{ marginTop: 30}}>
+              <Card className={classes.root} elevation={3} id="cardPost" style={{ marginTop: 30 }}>
 
                 <CardHeader
                   action={

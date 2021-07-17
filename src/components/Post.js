@@ -6,9 +6,13 @@ import {
   CardMedia,
   CardActions,
   Collapse,
+  
   IconButton,
   makeStyles,
   Typography,
+  TextField,
+  Button,
+  Container,
 } from "@material-ui/core";
 import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -100,7 +104,7 @@ export default function Post({ states }) {
                     },
                     { merge: true }
                   );
-                  batch.commit().then(() => {});
+                  batch.commit().then(() => { });
                 });
               });
           } else {
@@ -135,7 +139,7 @@ export default function Post({ states }) {
                           },
                           { merge: true }
                         );
-                        batch.commit().then(() => {});
+                        batch.commit().then(() => { });
                       });
                     });
                 });
@@ -179,7 +183,7 @@ export default function Post({ states }) {
           userID: UID,
           profilePic: profilePic,
         })
-        .then(() => {});
+        .then(() => { });
     });
   }
   return (
@@ -203,7 +207,7 @@ export default function Post({ states }) {
         </Typography>
       </CardContent>
 
-      <CardActions disableSpacing>
+      <CardActions disableSpacing id="profileTopContainer">
         {states.heartCtr}
         <IconButton
           aria-label="add to favorites"
@@ -235,18 +239,24 @@ export default function Post({ states }) {
         <CardContent>
           {comments.comment.map((comment) => (
             <div>
-              <h4>{comment.author}</h4>
-              <p>{comment.comment}</p>
+              <Card style={{marginTop:10, marginBottom:10, padding:10}}>
+                <h4>{comment.author}</h4>
+                <Typography  variant="body2">{comment.comment}</Typography>
+              </Card>
+              
             </div>
           ))}
-          <input
+          <TextField
             type="text"
             label="Comment"
             name="commentBody"
             onChange={userInput("commentBody")}
             value={payload.commentBody}
-          ></input>
-          <button onClick={() => handleComment()}>Comment</button>
+            style={{width:'100%'}}
+          />  
+          <div style={{display:"flex", flexDirection:"row", justifyContent:"flex-end", alignItems:"center", marginTop: 20}}>
+          <Button onClick={() => handleComment()} >Comment</Button>
+          </div>
         </CardContent>
       </Collapse>
     </Card>

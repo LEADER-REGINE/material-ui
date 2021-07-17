@@ -1,7 +1,29 @@
 import React, { useEffect, useState } from "react";
 import firebase from "../utils/firebase";
 
+
+import Nav from "../components/Nav";
+import { Card, CardContent, CardHeader, Grid, makeStyles, Typography } from "@material-ui/core";
+
+
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+     display: "flex",
+  },
+
+}));
+
+
+
+
+
+
 export default function Profile() {
+
+  const classes = useStyles();
+
   const user = firebase.auth().currentUser;
   const db = firebase.firestore();
   var UID = user.uid;
@@ -25,15 +47,20 @@ export default function Profile() {
   }, []);
 
   return (
-    <div>
-      <div>
-        <h3>Notifications</h3>
-        {notifs.notifs.map((notif) => (
-          <div>
-            <h1>{notif.value}</h1>
-          </div>
-        ))}
-      </div>
+    <div className={classes.root}>
+      <Nav />
+      <Grid item xs={12} md={12}>
+        <Card id="addPost1" style={{ maxWidth: 600, padding: 20 }}>
+          <CardHeader
+            title="Notifications"
+          />
+          {notifs.notifs.map((notif) => (
+            <CardContent id="profileTopContainer">
+              <Typography variant="body2" color="textSecondary" component="p">{notif.value}</Typography >
+            </CardContent>
+          ))}
+        </Card>
+      </Grid>
     </div>
   );
 }

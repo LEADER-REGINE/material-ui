@@ -176,6 +176,16 @@ export default function Nav() {
       <div className={classes.navContainer} id="sideNav">
         <nav className={classes.nav}>
           <ul className={classes.navItems}>
+            
+
+            <li className={classes.navList}>
+              <Button component={Link} to="/home" className={classes.but} classes={{ label: classes.label }}>
+                <HomeOutlinedIcon className={classes.navIcon} />
+
+                <Typography variant="h6" underlineNone className={classes.linkText}>   Home</Typography>
+              </Button>
+            </li>
+
             <li className={classes.navList}>
               <Button component={Link} to="/profile" className={classes.but} classes={{ label: classes.label }}>
                 <PersonOutlineOutlinedIcon className={classes.navIcon} />
@@ -187,14 +197,6 @@ export default function Nav() {
                   {" "}
                   Profile
                 </Typography>
-              </Button>
-            </li>
-
-            <li className={classes.navList}>
-              <Button component={Link} to="/home" className={classes.but} classes={{ label: classes.label }}>
-                <HomeOutlinedIcon className={classes.navIcon} />
-
-                <Typography variant="h6" underlineNone className={classes.linkText}>   Home</Typography>
               </Button>
             </li>
 
@@ -246,17 +248,19 @@ export default function Nav() {
       <div className={classes.burgerContainer} id="burger">
         <div className={classes.bmBurgerButton} >
           <Menu className={classes.bmBurgerBars} customBurgerIcon={<MenuIcon className={classes.burgerIcon} />} >
-            <Link className={classes.bmItemList} to="/profile" >
-              <div className={classes.bmItemList}>
-                <PersonOutlineOutlinedIcon className={classes.navIcon} />
-                <Typography variant="h6" underlineNone className={classes.linkText}>   Profile</Typography>
-              </div>
-            </Link>
+            
 
             <Link className="menu-item" className={classes.bmItemList} to="/home">
               <div className={classes.bmItemList}>
                 <HomeOutlinedIcon className={classes.navIcon} />
                 <Typography variant="h6" underlineNone className={classes.linkText}>    Home  </Typography>
+              </div>
+            </Link>
+
+            <Link className={classes.bmItemList} to="/profile" >
+              <div className={classes.bmItemList}>
+                <PersonOutlineOutlinedIcon className={classes.navIcon} />
+                <Typography variant="h6" underlineNone className={classes.linkText}>   Profile</Typography>
               </div>
             </Link>
 

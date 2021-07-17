@@ -1,11 +1,33 @@
 import React, { useState, useEffect } from "react";
 import firebase, { storage } from "../utils/firebase";
 import { useHistory } from "react-router-dom";
-import { TextField } from "@material-ui/core";
+import { Container, makeStyles, TextField } from "@material-ui/core";
+
+import Nav from "../components/Nav";
+
+
+
+
+
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+  },
+
+}));
+
+
+
 
 
 
 export default function ImageUpload() {
+
+
+  const classes = useStyles();
+
   const user = firebase.auth().currentUser;
   const db = firebase.firestore();
   var UID = user.uid;
@@ -84,50 +106,51 @@ export default function ImageUpload() {
   }
 
   return (
-    <div className="EditProfile-container">
-      {/* <div className="nav-container1">
+    <div className={classes.root}>
 
-        <Nav></Nav>
-      </div> */}
-      <div className="EditProfile-1">
-        {userdata.user.map((user) => (
-          <div>
-            <img src={user.profilePic} alt="Profile" className="EditProfile-img" />
-          </div>
-        ))}
 
-        <form onSubmit={updatePic}>
-          <input type="file" onChange={handleChange} accept="image/*" />
-          <button disabled={!file}>Upload</button>
-        </form>
-      </div>
-      <div className="EditProfile-1">
-        <form onSubmit={handleUpload}>
-          <TextField
-            id="outlined-basic"
-            type="text"
-            label="First Name"
-            name="fname"
-            onChange={userInput("fname")}
-            value={payload.fname}
-            variant="outlined"
-            style={{ width: "100%" }}
-          />
+      <Nav></Nav>
+      <Container>
+        <div className="EditProfile-1">
+          {userdata.user.map((user) => (
+            <div>
+              <img src={user.profilePic} alt="Profile" className="EditProfile-img" />
+            </div>
+          ))}
 
-          <TextField
-            id="outlined-basic"
-            type="text"
-            label="Last Name"
-            name="lname"
-            onChange={userInput("lname")}
-            variant="outlined"
-            value={payload.lname}
-            style={{ width: "100%" }}
-          />
+          <form onSubmit={updatePic}>
+            <input type="file" onChange={handleChange} accept="image/*" />
+            <button disabled={!file}>Upload</button>
+          </form>
+        </div>
+        <div className="EditProfile-1">
+          <form onSubmit={handleUpload}>
+            <TextField
+              id="outlined-basic"
+              type="text"
+              label="First Name"
+              name="fname"
+              onChange={userInput("fname")}
+              value={payload.fname}
+              variant="outlined"
+              style={{ width: "100%" }}
+            />
 
-          <button>Update Profile</button>
-        </form>
-      </div>
+            <TextField
+              id="outlined-basic"
+              type="text"
+              label="Last Name"
+              name="lname"
+              onChange={userInput("lname")}
+              variant="outlined"
+              value={payload.lname}
+              style={{ width: "100%" }}
+            />
+
+            <button>Update Profile</button>
+          </form>
+        </div>
+      </Container>
     </div>
   );
 }
